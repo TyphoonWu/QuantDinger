@@ -132,7 +132,7 @@ components:
           example: QuantDinger Python API
         version:
           type: string
-          example: 3.0.22
+          example: 3.0.23
         status:
           type: string
           example: running
@@ -2290,6 +2290,46 @@ paths:
       - Strategy
       operationId: getApiStrategiesPositions
       x-visibility: internal
+  /api/account/snapshot:
+    get:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      summary: Live swap/spot positions + open orders for a saved credential.
+      tags:
+      - strategy
+      operationId: getApiAccountSnapshot
+      x-visibility: internal
+  /api/account/positions:
+    get:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      summary: L1 account position mirror for Quick Trade / asset views.
+      tags:
+      - strategy
+      operationId: getApiAccountPositions
+      x-visibility: internal
   /api/strategies/grid-resting-orders:
     get:
       responses:
@@ -2530,6 +2570,46 @@ paths:
       - Strategy
       operationId: postApiStrategiesVerifyCode
       x-visibility: internal
+  /api/strategies/publish-template:
+    post:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      summary: Publish script strategy code to marketplace as script_template asset.
+      tags:
+      - Strategy
+      operationId: postApiStrategiesPublishTemplate
+      x-visibility: internal
+  /api/strategies/publish-bot-preset:
+    post:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      summary: Publish a bot strategy configuration to marketplace as bot_preset asset.
+      tags:
+      - Strategy
+      operationId: postApiStrategiesPublishBotPreset
+      x-visibility: internal
   /api/strategies/ai-generate:
     post:
       responses:
@@ -2565,6 +2645,46 @@ paths:
       tags:
       - Strategy
       operationId: getApiStrategiesPerformance
+      x-visibility: internal
+  /api/strategies/review-report:
+    post:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      summary: Build an AI-assisted strategy review report from factual trade records.
+      tags:
+      - Strategy
+      operationId: postApiStrategiesReviewReport
+      x-visibility: internal
+  /api/strategies/review-report/history:
+    get:
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanErrorEnvelope'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HumanSuccessEnvelope'
+      summary: List or load saved AI strategy review reports.
+      tags:
+      - Strategy
+      operationId: getApiStrategiesReviewReportHistory
       x-visibility: internal
   /api/strategies/logs:
     get:
